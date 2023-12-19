@@ -30,18 +30,31 @@ function generatePassword() {
 }
 //Prompts the user to confirm the criteria they would like included in their password
 function passwordPrompts() {
-  var askLength = prompt("Choose the length of password (must be 8 - 128 characters long)");
+  var passwordLength = prompt("Choose the length of password (must be 8 - 128 characters long)");
+  checkLength(passwordLength);
+
   var includeLowercase = confirm("Would you like to include lowercase letters in your password?");
   var includeUppercase = confirm("Would you like to include uppercase letters in your password?");
   var includeNumbers = confirm("Would you like to include numbers in your password?");
   var includeSpecial = confirm("Would you like to include special characters in your password?");
   // 
-  var userChoices = [askLength, includeLowercase, includeUppercase, includeNumbers, includeSpecial];
-  // console.log(askLength);
-  // console.log(includeLowercase);
-  // console.log(includeUppercase);
-  // console.log(includeNumbers);
-  // console.log(includeSpecial);
+  var userChoices = [passwordLength, includeLowercase, includeUppercase, includeNumbers, includeSpecial];
+  
+  var approvedChoices = userSelectionConfirmed();
+}
+// Checking what criterias were selected to be included, the length, and if user picked atleast 1 criteria
+function checkLength(passwordLength){
+  //Checking for correct length criteria
+  if (passwordLength < 8 || passwordLength > 128){
+    alert("Invalid Length, Try Again.\n\nPlease choose a password length between 8 to 128 characters. ");
+    passwordPrompts();
+  }
+  else{
+    return Promise.resolve();
+  }
+}
+function userSelectionConfirmed(){
+  
 }
 
 
